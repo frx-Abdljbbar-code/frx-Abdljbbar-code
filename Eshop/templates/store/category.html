@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+
+{% block content %}
+{% include "navbar.html" %}
+
+{% for categorys in category %}
+
+{% if categorys.category == id %}
+
+   <h1 class="text-secondary">{{ categorys.category }}</h1>
+ {{ categorys.name }}
+<br>
+ {{ categorys.description }}
+ <br>
+  {{ categorys.price }}
+
+{% else %}
+
+Not Category Available Here...
+
+{% endif %}
+
+{% endfor %}
+
+{% include "footer.html" %}
+{% endblock %}

@@ -1,0 +1,68 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}E-shop{% endblock %}
+{% block content %}
+
+<style>
+button {
+    border-radius: 50px;
+}
+.add-btn {
+  border-radius: 50rem;
+  color: black;
+}
+.container {
+  max-width: 100%;
+  margin: auto;
+}
+</style>
+{% include "navbar.html" %}
+<!--   END NAV BAR -->
+
+<!--<main role="main">
+  <!--<section class="jumbotron text-center bg-light">-->
+       <img src="{% static 'images/open.png' %}" class="imagg" alt="interface" loading="lazy">
+
+  <!--</section--> 
+<!-- end section ............-->
+
+{% if products %}
+
+<div class="album py-5 bg-light">
+ <div class="container">
+  <div class="row">
+{% for product in products %}
+      <div class="col-md-4">
+        <div class="card sh300 mb-4 shadow-sm">
+           <div class="card-body sh300">
+
+             <img class="icone21" src="{{ product.image.url }}" loading="lazy">
+           <h4 class="text-dark text-muted">{{ product.name }}</h4>
+        <a href="{% url 'store:product' id=product.id %}" class="btn btn1">View</a>
+      <button data-product="{{ product.id}} " data-action="add" class="add-btn btn btn-info cart-btn-transform m-3 update-cart">+ <i class="fas fa-shopping-cart"></i></button>
+     <!--
+            <h4 class="card-text text-light">{{ products.description | truncatewords:5 }}</h4>
+      -->
+       <!--<h4 style="display: inline-block; float: right;">-->
+         <strong class="waw"> ${{ product.price }}</strong>
+
+        </div>
+        </div>
+      </div>
+{% endfor %}
+     </div>
+   </div>
+</div>
+</main>
+{% else %}
+<br>
+<br>
+<h1 class="text-info text-center">Sorry!!</h1>
+<br>
+<h3 class="text-center text-primary">No Product Available Now<br>
+  <p>Please try in next time</p>
+</h3>
+{% endif %}
+{% include "footer.html" %}
+
+{% endblock %}

@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}Cart: all items{% endblock %}
+{% block content %}
+
+{% include "navbar.html" %}
+<br>
+{% if items %}
+ {{ cartItems }}
+{% for item in items %}
+
+	{{item.product.name}}
+
+	{{item.get_total|floatformat:2}}
+{% endfor %}
+
+
+{% else %}
+no Items to Your Wish List Items
+{% endif %}
+
+
+
+{% endblock %}

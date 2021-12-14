@@ -1,0 +1,101 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load crispy_forms_tags %}
+{% load bootstrap5 %}
+{% block title %}create your account{% endblock %}
+{% block content %}
+<style>
+  .icone22 {
+    margin-top: 40px;
+    margin-bottom: none;
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    position: relative;
+    top: -40px;
+    left: calc(50% - 40px);
+  }
+p {
+  color: #4b5156;
+}
+
+a {
+  font-weight: 600;
+}
+input[type=text],input[type=password],input[type=email]{
+        width: 85%;
+        background: none;
+        display: block;
+        margin: 20px auto;
+        text-align: center;
+        border: 2px solid #3498db;
+        padding: 10px 5px;
+        outline: none;
+        color: black;
+        border-radius: 24px;
+        transition: 0.25s;
+}
+input[type=text],input[type=password]:focus {
+        width: 93%;
+        border-color: #2F2F59; /*#2ecc71*/
+}
+label {
+      padding-top: 10px !important;
+      display: block;
+      color: rgb(105, 192, 105);
+      font-weight: bold;
+}
+button {
+  width: 96%;
+  height: 33px;
+  border: none;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: linear-gradient(45deg, #5734ca 20%,#a178f8);
+  color: #FFFFFF;
+  font-weight: 600;
+  font-size: 1rem;
+  margin-top: 20px;
+  box-shadow: 2px 2px 30px rgba(161, 120, 248, 0.1);
+}
+button:active{
+  transform: scale(1.1);
+}
+</style>
+<div class="container">
+<div class="row">
+<div class="col-md-9 m-auto">
+<form class="card" method="post" style="padding: 20px;" novalidate>
+  <img class="icone22" src="{% static 'images/31.png' %}" loading="lazy">
+          {% csrf_token %}
+
+          {{ form.username|as_crispy_field }}
+    <!--
+        <div class="row">
+      
+        <div class="col-6">
+             form.first_name|as_crispy_field 
+       </div>
+        <div class="col-6">
+           form.last_name|as_crispy_field 
+        </div>
+        </div> 
+     -->
+       {{ form.email|as_crispy_field }}
+
+       {{ form.password1|as_crispy_field }}
+
+     {{ form.password2|as_crispy_field }}
+          <br>
+    <div class="form-group">
+   <button class="btn btn-success btn-block">Register</button>
+ </div>
+<br>
+   <p>Already have an account?<a href="{% url 'login' %}" class="text-primary lead">Login Now</a></p>
+<form>
+</div>
+</div>
+</div>
+{% include "footer.html" %}
+{% endblock %}

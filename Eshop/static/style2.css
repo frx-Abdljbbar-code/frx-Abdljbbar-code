@@ -1,0 +1,582 @@
+* {
+  margin: none;
+  padding: none;
+}
+boody {
+  background-position: center;
+  background-size: 100% 100%;
+  background-image: linear-gradient(#6000a0, #20a0c0);
+  background-repeat: no-repeat;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Helvetica Neue', 'Ubuntu', sans-serif;
+}
+/*------Cart-------*/
+.chg-quantity{
+    width: 12px;
+    cursor: pointer;
+    display: block;
+    margin-top: 5px;
+    transition:.1s;
+}
+
+.chg-quantity:hover{
+    opacity: .6;
+}
+/*--------Profile Interface -------*/
+.card12 {
+  place-items: center;
+  position: relative;
+  top: 50px;
+  margin: 20% 20% 20% 20%;
+  display: flex;
+  flex-direction: column;
+  width: 60%;
+  height: auto;
+  border-radius: 10px;
+  box-shadow: 8px 25px 40px rgba(15 15 15 / 25%);
+  padding: 20px 10px;
+}
+.card12 img {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  object-fit: cover;
+  box-shadow: 0px 12px 15px rgba(15 15 15 / 15%);
+  position: absolute;
+  top: -50px;
+}
+.content12 {
+  margin-top: 30px;
+  text-align: center;
+}
+.btn12 {
+  position: relative;
+  left: 40%;
+  width: 100px;
+  height: 40px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  outline: none;
+  border: none;
+  background-color: #FDA623;
+  color: rgba(0 0 0);
+  font-size: 1rem;
+  border-radius: 5px;
+  font-weight: bold;
+}
+.btn12:active {
+  background: linear-gradient(to right bottom,
+      rgba(152, 205, 237, 0.5),
+      rgba(170, 201, 167, 0.3));
+  color: #2F2F59;
+  transition: cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+/*-------HOME PAGE USER INTERFACE ---------*/
+#main {
+  width: 100%;
+  height: 50%;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  position: absolute;
+}
+.main-box {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 60px 10%;
+}
+.text {
+  width: 400px;
+}
+.text span{
+  font-weight: 700;
+  color: #000000;
+  letter-spacing: 1px;
+  font-size: 1.1rem;
+}
+.text h2{
+  color: #000000;
+  font-size: 6rem;
+  letter-spacing: 1px;
+  font-weight: 700;
+  margin: 0px 0px 30px 0px;
+  line-height: 83px;
+}
+.text p{
+  color: #595659;
+  font-weight: 400;
+  margin: 1.2rem;
+}
+.bn {
+  width: 150px;
+  height: 40px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: linear-gradient(45deg, #5734ca 20%,#a178f8);
+  color: #FFFFFF;
+  font-weight: 600;
+  font-size: 1rem;
+  margin-top: 20px;
+  box-shadow: 2px 2px 30px rgba(161, 120, 248, 0.1h)
+}
+.bn:active{
+  transform: scale(1.1);
+}
+.text span font{
+  border-top: 3px solid #a178f8;
+}
+/*------USER INTERFACE-------*/
+.imag {
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    height: 70%;
+    width: 70%;
+    position: relative;
+    left: 35%;
+  }
+.container21 {
+  position: relative;
+  max-width: 100%;
+  margin: auto;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  padding: 30px 20px 10px;
+  border: none;
+}
+.container21 .card21 {
+  max-width: 30%;
+  height: 420px;
+  height: 215px;
+  background: #fff;
+  margin: 30px 10px;
+  padding: 20px 15px;
+  display: flex;
+  border-radius: 4px;
+  flex-direction: column;
+  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.5);
+  transition: 0.3s ease-in-out;
+}
+.container21 .card21:hover{
+  height: 420px;
+}
+.container21 .card21 .imgBx21 {
+  position: relative;
+  background: #fff;
+  top: -60px;
+  left: 2%;
+  min-width: initial;
+  width: 97%;
+  height: 260px;
+  border-radius: 5px;
+  z-index: 1;
+  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.2);
+}
+.container21 .card21 .imgBx21 img{
+  max-width: 90%;
+  border-radius: 50%;
+  height: 200px;
+  position: relative;
+  left: 8%;
+}
+.container21 .card21 .content21 {
+  position: relative;
+  margin-top: -140px;
+  padding: 10px 15px;
+  text-align: center;
+  color: #111;
+  visibility: hidden;
+  opacity: 0;
+  transition: 0.3s ease-in-out;
+  transition-delay: 0s;
+}
+.container21 .card21:hover .content21 {
+  visibility: visible;
+  opacity: 1;
+  margin-top: -40px;
+  transition-delay: 0.3s;
+}
+@media (max-width: 767.98px){
+  .card12 {
+    width: 80%;
+    left: -10%;
+    padding: 10px 5px;
+  }
+  .btn12 {
+    left: 25%;
+    bottom: 10%;
+  }
+  .imag {
+    background-position: left;
+    background-size: cover;
+    background-repeat: no-repeat;
+    height: 100%;
+    width: 10rem;
+    left: 0rem;
+    bottom: 5rem;
+  }
+  .main-box {
+    margin: 60px 4%;
+  }
+  .container21 .card21 {
+    max-width: 100%;
+  }
+}
+/*-----STORE INTERFACE-------*/
+.icone21 {
+  width: 210px;
+  height: 205px;
+  margin-left: 15%;
+/*  border-radius: 20% 20% 0% 20%;
+  box-shadow: 0px 5px 5.5px 0px black;*/
+}
+.imagg {
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    height: 20rem;
+    width: 100%;
+    position: relative;
+  }
+.notification {
+  font-size: 15px;
+  color: #1b1c24;
+  position: relative;
+}
+ .notification .badge {
+  right: -12px;
+  position: absolute;
+  top: -4px;
+  background-color: red;
+  border-radius: 50%;
+  display: flex;
+  width: 20px;
+  height: 20px;
+  place-items: center;
+  color: #f4f4f4;
+}
+.sh300 {
+    border-radius: 5%;
+    box-shadow: 8px 25px 40px rgba(15 15 15 / 50%);
+}
+.waw {
+  position: absolute;
+  bottom: 6%;
+  left: 83%;
+  color: black;
+}
+.btn1 {
+  outline: none;
+  border: none;
+  background-color: #6D71F9;/*#FDA623*/;
+  color: rgba(0 0 0);
+  font-size: 1rem;
+  border-radius: 5px;
+  font-weight: bold;
+  width: 50%;
+/*  position: absolute;
+  left: 53%;
+  bottom: 10%;
+  height: 40px;
+  width: 30%;
+  border: none;
+  text-align: center;*/
+}
+.btn1:active {
+  background: linear-gradient(to right bottom,
+        rgba(152,205,237,0.5),
+        rgba(170,201,167,0.3)
+        );
+  color: #2F2F59;
+  transition: cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+/*-----Product Details Interface-------*/
+.container2 {
+  bottom: 5%;
+  left: 60%;
+  width: 75px;
+  height: 40px;
+  background: none;/*#185AD8;*/
+  color: white;
+  justify-content: center;
+  display: flex;
+  align-items: center;
+  border: 2px solid black;
+  border-radius: 2px;
+  position: relative;
+  flex-direction: column;
+  /*box-shadow: 0 5px 20px rgba(0, 0, 0, 0.5);
+  transition: 0.3s ease-in-out;*/
+}
+.buton {
+  width: 30px;
+  height: 30px;
+  position: absolute;
+  cursor: pointer;
+  font-size: 1.2rem;
+  background: white;
+  color: rgba(34, 34, 34);
+  border: 1px solid black;
+  border-radius: 5px;
+  /*box-shadow: 0 5px 20px rgba(0, 0, 0, 0.5);
+  transition: 0.3s ease-in-out;*/
+}
+.pppay{
+  width:70px;
+  display: inline-block;
+}
+.cccard{
+  width:120px;
+  height: 40px;
+}
+/*ZZZZZZZZZZZZ*/
+
+.cc {
+  outline: none;
+  border: none;
+  background-color: #54C1FB; /*#FDA623;*/
+  color: rgba(0 0 0);
+  font-size: 1rem;
+  border-radius: 5px;
+  font-weight: bold;
+}
+.cc:active {
+  background: linear-gradient(to right bottom,
+      rgba(152, 205, 237, 0.5),
+      rgba(170, 201, 167, 0.3));
+  border: none;
+  color: #2F2F59;
+  transition: cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.prices {
+  font-size: 1.3rem;
+}
+.lm {
+  /*background: linear-gradient(45deg, #5734ca 20%,#a178f8);*/
+  background: linear-gradient(to right bottom,
+    rgb(182, 152, 237),
+    rgb(127, 144, 156));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  font-size: 90px;
+}
+.container1 {
+    width: 100%;
+    position: fixed;
+    left: 0rem;
+    bottom: 0%;
+    height: 4rem;
+    border: 1px solid black;
+}
+.notification {
+  font-size: 25px;
+  color: #1b1c24;
+  position: relative;
+}
+ .notification .badge {                       
+  right: -12px;
+  position: absolute;
+  top: -4px;
+  background-color: red;            
+  border-radius: 50%;
+  display: flex;
+  width: 20px;
+  height: 20px;
+  place-items: center;
+  color: #f4f4f4;
+}
+.h-4 {
+    position: absolute;
+    left: 2%;
+    bottom: 10%;
+    color: #2F2F59;
+}
+.cc {
+    position: absolute;
+    left: 49%;
+    bottom: 10%;
+    height: 40px;
+    width: 30%;
+}
+.bmw {
+    position: absolute;
+    left: 81%;
+    bottom: 14%;
+    color: #2F2F59;
+}
+@media (max-width: 767.98px){
+  .prices .price {
+    left: 30%;
+    bottom: 3%;
+  }
+}
+@media (min-width: 767.98px){
+    .imagg {
+	height: 38rem;
+    }
+    .container1 {
+        display: flex;
+        height: 4rem;
+        width: 100%;
+        right: 0%;
+        background: none;
+    }
+    .cc {
+        position: absolute;
+        left: 50%;
+        bottom: 19%;
+        width: 40%;
+        height: 40px;
+    }
+    .h-4 {
+        left: 4%;
+        bottom: 14%;
+        font-size: 25px;
+    }
+    .bmw {
+        left: 92%;
+        bottom: 19%;
+        font-weight: bold;
+        font-size: 20px;
+    }
+}
+
+
+/*ZZZZZZZZZZZZZ*/
+.pinkcolor {
+  color: #556cd6;
+}
+#checkout-button {
+  height: 36px;
+  background: #556cd6;
+  color: white;
+  width: 100%;
+  font-size: 14px;
+  border: 0;
+  font-weight: 500;
+  cursor: pointer;
+  letter-spacing: 0.6;
+  border-radius: 0 0 6px 6px;
+  transition: all 0.2s ease;
+  box-shadow: 0px 4px 5.5px 0px grey; /*rgba(0, 0, 0, 0.07)*/
+}
+#checkout-button:hover {
+  opacity: 0.8;
+}
+.icone22 {
+    margin-top: 40px;
+    margin-bottom: none;
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    position: relative;
+    top: -40px;
+    left: calc(50% - 40px);
+  }
+.icone21 {
+  width: 205px;
+  height: 200px;
+  margin-left: 15%;
+/*  border-radius: 20% 20% 0% 20%;
+  box-shadow: 0px 5px 5.5px 0px black;*/
+}
+.im_age {
+  height: 100px;
+  width: 100px;
+  border-radius: 50%;
+}
+.one {
+  border-radius: 0%;
+}
+.two {
+  font-weight: bold;
+}
+.tree {
+  background: black;
+}
+.img1 {
+  background-image: url("{% static 'images/13.jpg' %}");
+  background-position: center;
+  background-size: 100% 100%;
+  border-radius: 2px;
+  height: 100%;
+}
+
+.img2 {
+  background-image: url("{% static 'images/1.jpg' %}");
+  background-position: center;
+  background-size: 100% 100%;
+  height: 100%;
+}
+@media (max-width: 1000px){
+  .imgg {
+    background-image: url('images/easy-shop.jpg');/*linear-gradient(#6000a0, #20a0c0)*/
+    background-position: center;
+    background-size: 100% 100%;
+    padding-bottom: 120px;
+    overflow-x: hidden;
+  }
+  .pd {
+    padding: 50px;
+    box-shadow: 0px 4px 5.5px 0px rgba(0, 0, 0, 0.07);
+  }
+}
+@media (min-width: 100px){
+  .imgg {
+    background-image: url('images/bz.png');/*linear-gradient(#6000a>*/
+    background-position: center;
+    background-size: 100% 100%;
+    padding-bottom: 50px;
+    overflow-x: hidden;
+  }
+  .pd {
+    padding-bottom: none;
+    box-shadow: 0px 4px 7px 0px white;
+  }
+}
+.rd {
+  border-radius: 45px 45px 0px 45px;
+  background: none;
+  box-shadow: 0px 5px 5.5px 0px black;
+}
+.products {
+  border-radius: 15%;
+  box-shadow: 0px 10px 10px 0px black;
+}
+.imggg {
+    background-image: linear-gradient(gray, white, gray);
+    background-position: center;
+    background-size: 100% 100%;
+    overflow-x: hidden;
+}
+.imggg21 {
+    background-image: linear-gradient(90deg, rgba(152,205,237,0.5) 0%, rgb(127, 144, 156) 100%);
+    background-position: center;
+    background-size: 100% 100%;
+    overflow-x: hidden;
+}
+.img3 {
+  height: 200px;
+  width: 200px;
+  border-radius: 50%;
+  border: 0px solid black;
+}
+.img4 {
+  height: 140px;
+  width: 130px;
+  border-radius: 3%;
+  margin-left: 1%;
+}
+.bg-img {
+  background-image: url("{% static 'images/shop.png' %}");
+  background-position: center;
+  background-size: cover;
+}
+
+

@@ -1,0 +1,178 @@
+{% extends "base.html" %}
+{% load static %}
+{% load crispy_forms_tags %}
+{% block content %}
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title data-tid="elements_examples.meta.title">Stripe Elements: Build beautiful, smart checkout flows</title>
+  <meta data-tid="elements_examples.meta.description" name="description" content="Build beautiful, smart checkout flows.">
+  <style>
+  input {
+  border-radius: 6px;
+  margin-bottom: 6px;
+  padding: 12px;
+  border: 1px solid rgba(50, 50, 93, 0.1);
+  height: 44px;
+  font-size: 16px;
+  width: 100%;
+  background: white;
+}
+
+.result-message {
+  line-height: 22px;
+  font-size: 16px;
+}
+
+.result-message a {
+  color: rgb(89, 111, 214);
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.hidden {
+  display: none;
+}
+
+#card-error {
+  color: rgb(105, 115, 134);
+  text-align: left;
+  font-size: 13px;
+  line-height: 17px;
+  margin-top: 12px;
+}
+
+#card-element {
+  border-radius: 4px 4px 0 0 ;
+  padding: 12px;
+  border: 1px solid rgba(50, 50, 93, 0.1);
+  height: 44px;
+  width: 100%;
+  background: white;
+}
+        /* Blue outline on focus */
+.StripeElement--focus {
+            border-color: #80BDFF;
+            outline:0;
+            box-shadow: 0 0 0 .2rem rgba(0,123,255,.25);
+            transition: border-color .15s ease-in-out, box-shadow .15s ease-in-out;
+}
+        /* Can't see what I type without this */
+#card-number.form-control,
+#card-cvc.form-control,
+#card-exp.form-control {
+            display:inline-block;
+}
+  </style>
+</head>
+
+<!--Stripe Form-->
+<script src="https://js.stripe.com/v3/"></script>
+<form action="{% url 'store:charge' %}" method="post" id="payment-form">
+   {% csrf_token %}
+    <div class="form-row">
+      <label for="card-element">
+        Credit or debit card
+      </label>
+      <div id="card-element">
+        <!-- A Stripe Element will be inserted here. -->
+      </div>
+      <!-- Used to display form errors. -->
+      <div id="card-errors" role="alert"></div>
+      </div>
+      <div style="clear:left"></div>
+        <br>
+    <button class="btn btn-secondary btn-block" id="test_checkout-button" type="submit">Continue To Checkout</button>
+</form>
+<br>
+<script>
+// Create a Stripe client
+		//var url = "";
+                var product_ID = "{{ product.id }}";
+                var stripe = Stripe("pk_test_51JKPAME9Zu8rS7a9ffycJWJEV2p3Tds4wKaYXmgBsSniQi0RBZwxNcYkhhaccDWXBZ5MuDjyBAk7FTwYuwo6oyv900l2UOIIM6");
+                
+		//function completeOrder(){
+        	//fetch(url, {
+            	//	method: 'POST',
+            	//		headers: {
+                //			'Content-type': 'application/json',
+                //			'X-CSRFToken': csrftoken,
+            	//			},
+            	//		body: JSON.stringify({'productID': productID}),
+        	//		})
+    		//}
+
+                // Create an instance of Elements.
+                var elements = stripe.elements();
+
+                // Custom styling can be passed to options when creating an Element.
+                // (Note that this demo uses a wider set of styles than the guide below.)
+                var style = {
+                  base: {
+                    color: '#32325d',
+                    fontFamily: '"Helvetica Neue", Helvetica, sans-serif',
+                    fontSmoothing: 'antialiased',
+                    fontSize: '16px',
+                    '::placeholder': {
+                      color: '#aab7c4'
+                    }
+                  },
+                  invalid: {
+                    color: '#fa755a',
+                    iconColor: '#fa755a'
+                  }
+                };
+
+                // Create an instance of the card Element.
+                var card = elements.create('card', {style: style});
+
+                // Add an instance of the card Element into the `card-element` <div>.
+                card.mount('#card-element');
+
+                // Handle real-time validation errors from the card Element.
+                card.addEventListener('change', function(event) {
+                  var displayError = document.getElementById('card-errors');
+                  if (event.error) {
+                    displayError.textContent = event.error.message;
+                  } else {
+                    displayError.textContent = '';
+                  }
+                });
+
+                // Handle form submission.
+                var form = document.getElementById('payment-form');
+                form.addEventListener('submit', function(event) {
+                  event.preventDefault();
+
+                  stripe.createToken(card).then(function(result) {
+                    if (result.error) {
+                      // Inform the user if there was an error.
+                      var errorElement = document.getElementById('card-errors');
+                      errorElement.textContent = result.error.message;
+                    } else {
+                      // Send the token to your server.
+                      stripeTokenHandler(result.token);
+                    }
+                  });
+                });
+
+                // Submit the form with the token ID.
+                function stripeTokenHandler(token) {
+                  // Insert the token ID into the form so it gets submitted to the server
+                  var form = document.getElementById('payment-form');
+                  var hiddenInput = document.createElement('input');
+                  hiddenInput.setAttribute('type', 'hidden');
+                  hiddenInput.setAttribute('name', 'stripeToken');
+                  hiddenInput.setAttribute('value', token.id);
+                  form.appendChild(hiddenInput);
+
+                  // Submit the form
+                  form.submit();
+		  //completeOrder()
+                }
+</script>
+        <!--End stripe Form-->
+{% endblock %}

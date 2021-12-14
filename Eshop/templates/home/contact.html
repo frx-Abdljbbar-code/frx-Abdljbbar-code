@@ -1,0 +1,58 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+{% block title %}E-shop: support{% endblock %}
+{% block content %}
+<style>
+input[type=text],input[type=email],textarea{
+        width: 85%;
+        background: none;
+        display: block;
+        margin: 20px auto;
+        text-align: center;
+        border: 2px solid #343360;
+        padding: 10px 5px;
+        outline: none;
+        color: black;
+        border-radius: 24px;
+        transition: 0.25s;
+}
+input[type=text],input[type=email],textarea:focus {
+        width: 93%;
+        border-color: #2ecc71
+}
+label {
+      padding-top: 10px !important;
+      display: block;
+      color: rgb(105, 192, 105);
+      font-weight: bold;
+}
+</style>
+<br>
+<div class="container">
+    <h2 class="text-center pinkcolor">🇨 🇴 🇳 🇹 🇦 🇨 🇹  🇲 🇪 </h2>
+      <h4>Cᴏɴᴛᴀᴄᴛ ᴜs ᴅɪʀᴇᴄᴛʟʏ ɪғ ʏᴏᴜ ʜᴀᴠᴇ ᴀɴʏ ϙᴜᴇsᴛɪᴏɴs</h4>
+      <p class="text-muted text-success">
+        ᴘʟᴇᴀsᴇ ᴇɴᴛᴇʀ ʏᴏᴜʀ ᴜsᴇʀɴᴀᴍᴇ, ᴇᴍᴀɪʟ ᴀᴅᴅʀᴇss ᴛᴏ sᴇɴᴅ ʏᴏᴜʀ ᴍᴇssᴀɢᴇ ᴡɪᴛʜ sᴜᴄᴄᴇs.
+        ᴏɴᴇ ᴏғ ᴏᴜʀ sᴛᴀғғ ᴍᴇᴍʙᴇʀs ᴡɪʟʟ ʙᴇ ʜᴀᴘᴘʏ ᴛᴏ ᴄᴏɴᴛᴀᴄᴛ ʏᴏᴜ ᴅɪʀᴇᴄᴛʟʏ ᴀɴᴅ ᴀɴsᴡᴇʀ ʏᴏᴜʀ ϙᴜᴇsᴛɪᴏɴs
+      </p>
+
+   <form method="POST" novalidate>
+     {% csrf_token %}
+     <div class="row">
+    <div class="col-md-6">
+       {{ form.email|as_crispy_field }}
+    </div>
+    <div class="col-md-6">
+      {{ form.username|as_crispy_field }}
+    </div>
+    <div class="col-md-12">
+      {{ form.msg|as_crispy_field }}
+    </div>
+  </div>
+   <button class="btn btn-outline-success btn-block" type="submit">Send</button>
+ </form>
+
+</div>
+<br>
+{% include "footer.html" %}
+{% endblock %}

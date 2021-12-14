@@ -1,0 +1,88 @@
+{% load static %}
+<!-- Navbar -->
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <!-- Container wrapper -->
+  <div class="container-fluid">
+    <!-- Toggle button -->
+    <button style="height: 60px; width: 60px" class="navbar-toggler" type="button" data-mdb-toggle="collapse" data-mdb-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <img class="navbar-toggler-icon" src="{% static 'images/13.png' %}"><!--i class="fas fa-bars"></i-->
+    </button>
+    <h3 style="letter-spacing: 4px;margin-right: 50px;" class="text-secondary center">Eshop</h3>
+    <!-- Collapsible wrapper -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <!-- Navbar brand -->
+      <a class="navbar-brand mt-2 mt-lg-0" href="#">
+        <img src="{% static 'img/favicon1.svg' %}" height="15" alt="" loading="lazy"/>
+      </a>
+      <!-- Left links -->
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <li class="nav-item">
+          <a class="nav-link" href="{% url 'store:menu' %}">Store</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="{% url 'home:about' %}">About</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="{% url 'home:contact' %}">Contact me</a>
+        </li>
+      </ul>
+      <!-- Left links -->
+    </div>
+    <!-- Collapsible wrapper -->
+
+    <!-- Right elements -->
+    <div class="d-flex align-items-center">
+      <!-- Icon -->
+      <a class="text-reset me-3" href="{% url 'store:cart' %}">
+        <i class="fas fa-shopping-cart"></i>
+	{% if cartItems > 0 %}
+        <span class="badge rounded-pill badge-notification bg-danger">{{cartItems}}</span>
+	{% else %}
+
+	{% endif %}
+       </a>
+
+      <!-- Notifications -->
+     
+
+      <!-- Avatar -->
+  {% if user.is_authenticated %}
+      <a class="dropdown-toggle d-flex align-items-center hidden-arrow" href="#" id="navbarDropdownMenuLink" role="button" data-mdb-toggle="dropdown" aria-expanded="false">
+      {% if not user.profile.image %}
+       <img src="{% static 'images/avatar.jpg' %}" class="rounded-circle" height="25" width="25" alt="profile" loading="lazy" />
+      {% else %}
+        <img src="{{ user.profile.image.url }}" class="rounded-circle" height="25" width="25" alt="profile" loading="lazy" />
+      {% endif %}
+      </a>
+      <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdownMenuLink">
+        <li>
+          <a class="dropdown-item" href="{% url 'prof:profile' slug=user.profile.slug %}">My profile</a>
+        </li>
+        <li>
+          <a class="dropdown-item" href="{% url 'prof:edit_profile' slug=user.profile.slug %}">Edit profile</a>
+        </li>
+        <li>
+          <a class="dropdown-item" href="{% url 'logout' %}">Logout</a>
+        </li>
+      </ul>
+{% else %}
+         <a class="dropdown-toggle d-flex align-items-center hidden-arrow" href="#" id="navbarDropdownMenuLink" role="button" data-mdb-toggle="dropdown" aria-expanded="false" >
+        <img src="{% static 'images/11.png' %}" class="rounded-circle" height="25" alt="Profile" loading="lazy" />
+      </a>
+      <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdownMenuLink">
+        <li>
+          <a class="dropdown-item" href="{% url 'login' %}">Sign IN</a>
+        </li>
+        <li>
+          <a class="dropdown-item" href="{% url 'home:signup' %}">Sign UP</a>
+        </li>
+      </ul>
+  {% endif %}
+</div>
+    <!-- Right elements -->
+  </div>
+  <!-- Container wrapper -->
+</div>
+</nav>
+
+<!-- Navbar -->

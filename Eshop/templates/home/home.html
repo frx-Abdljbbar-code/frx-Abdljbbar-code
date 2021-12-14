@@ -1,0 +1,46 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}E-shop{% endblock %}
+{% block content %}
+<style>
+.container {
+  max-width: 100%;
+  margin: auto;
+}
+</style>
+{% include "navbar.html" %}
+ <!----------Start------------>
+<section id="main">
+ <div class="main-box">
+  <div class="text">
+    <span><font>We Do</font> What You Want</span>
+     <h2>Easy Shop</h2>
+     <p>Minimal And Beautiful User Interface For Your Upcoming Project</p>
+     <a href="{% url 'store:menu' %}" class="bn">Shopping Now</a//>
+  </div>
+
+   <div class="">
+       <img src="{% static 'images/644.png' %}" class="imag" alt="interface" loading="lazy"/>
+   </div>
+ </div>
+<!------------End-------------->
+<div class="container">
+   <h1 class="text-center text-secondary">All Category</h1>
+   <div class="container21">
+{% for c in contenthome %}
+        <div class="card21">
+          <div class="imgBx21">
+            <img src="{{ c.image.url }}" loading="lazy">
+          </div>
+          <div class="content21">
+            <h2>{{c.title}}</h2>
+            <p>{{c.content}}</p>
+           <a href="{% url 'store:menu' %}" class="btn btn-outline-primary btn-block">Test</a>
+         </div>
+      </div>
+{% endfor %}
+</div>
+</div>
+{% include "footer.html" %}
+</section>
+{% endblock %}

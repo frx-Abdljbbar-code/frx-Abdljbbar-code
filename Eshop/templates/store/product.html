@@ -1,0 +1,151 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load crispy_forms_tags %}
+{% load crispy_forms_tags %}
+{% block title %}E-shop: Product Details{% endblock %}
+{% block content %}
+<style>
+.container {
+  max-width: 100%;
+  margin: auto;
+}
+.asteriskField {
+  color: #fff;
+}
+.form-check {
+  padding-left: 4rem;
+}
+input[type=text],input[type=email],input[type=tel],select{
+        width: 85%;
+        background: none;
+        display: block;
+        margin: 20px auto;
+        text-align: center;
+        border: 2px solid #54C1FB; /*#3498db;*/
+        padding: 10px 5px;
+        outline: none;
+        color: black;
+        border-radius: 24px;
+
+        transition: 0.25s;
+}
+input[type=text],input[type=email]:focus {
+        width: 93%;
+        border-color: linear-gradient(90deg, rgba(152,205,237,0.5) 0%, rgb(127, 144, 156) 100%); /*#2ecc71*/
+}
+label {
+      padding-top: 10px !important;
+      display: block;
+      color: #6D81F9;/*#2F2F59;*/
+      font-weight: bold;
+}
+.form-check-label {
+  color: #272848;
+}
+.form-check-input1 {
+  padding: 10px 30px;
+  margin-top: 20px;
+  margin-left: -26px;
+  box-sizing: border-box;
+  border: 2px solid rgba(255, 255, 255, 0.2);
+
+  /*box-shadow: -4px -2px 15px rgba(0, 0, 0, 0.5);*/
+
+  width: 20px;
+  height: 20px;
+  display: inline-block;
+  border-radius: 50%;
+}
+.icone {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+}
+</style>
+
+{% include "navbar.html" %}
+ <h1 class="lm text-center text-dark">Product</h1>
+<br>
+<div class="container">
+ <div class="row">
+
+<div class="card col-md-6">
+
+  <h1 class="text-center" style="color: #54C1FB;">{{ product.name }}</h1>
+<!---  <br>
+   <img src="{{ products.image.url }}" class="img-thumbnail" height="100px"/>
+  <br />
+--->
+<!--Carousel Wrapper-->
+<div id="carousel-example-1z" class="carousel slide carousel-fade" data-ride="carousel">
+
+
+    <!--Slides-->
+    <div class="carousel-inner" role="listbox">
+      {% for p in photos %}
+      <div class="carousel-item {% if forloop.counter0 == 0 %} active {% endif %}">
+        <img class="d-block w-100" src="{{p.images.url}}" alt="First slide" loading="lazy">
+      </div>
+      {% endfor %}
+      <!--/First slide-->
+
+    <!--/.Slides-->
+    <!--Controls-->
+    <a class="carousel-control-prev" href="#carousel-example-1z" role="button" data-slide="prev">
+      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+      <span class="sr-only">Previous</span>
+    </a>
+    <a class="carousel-control-next" href="#carousel-example-1z" role="button" data-slide="next">
+      <span class="carousel-control-next-icon" aria-hidden="true"></span>
+      <span class="sr-only">Next</span>
+    </a>
+    <!--/.Controls-->
+  </div>
+</div>
+<!------ End Images Field ------>
+
+<!-------Customer Image ---------->
+<br>
+
+<!--------------Add Items--------------
+
+--------Product Description------->
+  <div class="alert-light alert-dismissable">
+   <p class="text-dark lead">
+   {{ product.description | escape | linebreaks }}
+   </p>
+  </div>
+  <br>
+<!--------------/PRICE\------------>
+<div class="row">
+
+<div class="col-3">
+     <del><p class="prices text-muted">{{ product.old_price }}$</p></del>
+</div>
+
+<div class="col-3">
+       <p class="prices text-dark">{{ product.price }}$</p>
+</div>
+
+
+<div class="col-6">
+  <div class="prices text-warning">
+      <span>★</span><span>★</span><span>★</span><span>★</span><span>★</span>
+</div></div>
+
+</div>
+</div>
+<br>
+<br><br>
+<div class="card col-md-6">
+<p class="text-muted">Add This Item in Your Cart</p>
+<a href="#" class="btn btn-outline-danger">Add To Wish List</a>
+<button data-product="{{ product.id}} " data-action="add" class="add-btn btn btn-info cart-btn-transform m-3 update-cart">+ <i class="fas fa-shopping-cart"></i></button>  
+   </div>
+
+  </div>
+ </div>
+  <br>
+ <br>
+{% include "footer.html" %}
+{% endblock %}

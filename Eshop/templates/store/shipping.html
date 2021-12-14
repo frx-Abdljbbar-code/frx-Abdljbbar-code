@@ -1,0 +1,113 @@
+{% extends "base.html" %}
+{% load crispy_forms_tags %}
+{% load static %}
+{% block content %}
+<style>
+.container {
+  max-width: 100%;
+  margin: auto;
+}
+.asteriskField {
+  color: #fff;
+}
+.form-check {
+  padding-left: 4rem;
+}
+input[type=text],input[type=email],input[type=tel],select{
+        width: 85%;
+        background: none;
+        display: block;
+        margin: 20px auto;
+        text-align: center;
+        border: 2px solid #54C1FB; /*#3498db;*/
+        padding: 10px 5px;
+        outline: none;
+        color: black;
+        border-radius: 24px;
+
+        transition: 0.25s;
+}
+input[type=text],input[type=email]:focus {
+        width: 93%;
+        border-color: linear-gradient(90deg, rgba(152,205,237,0.5) 0%, rgb(127, 144, 156) 100%); /*#2ecc71*/
+}
+label {
+      padding-top: 10px !important;
+      display: block;
+      color: #6D81F9;/*#2F2F59;*/
+      font-weight: bold;
+}
+.form-check-label {
+  color: #272848;
+}
+.form-check-input1 {
+  padding: 10px 30px;
+  margin-top: 20px;
+  margin-left: -26px;
+  box-sizing: border-box;
+  border: 2px solid rgba(255, 255, 255, 0.2);
+
+  /*box-shadow: -4px -2px 15px rgba(0, 0, 0, 0.5);*/
+
+  width: 20px;
+  height: 20px;
+  display: inline-block;
+  border-radius: 50%;
+}
+.icone {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+}
+</style>
+<form method="post" novalidate>
+          {% csrf_token %}
+        <h3 class="text-left h3" style="color: #54C1FB;">Shippping Address</h3>
+          {{ form.add1|as_crispy_field }}
+          {{ form.add2|as_crispy_field }}
+        <div class="row">
+        <div class="col-6">
+          {{ form.city|as_crispy_field }}
+        </div>
+        <div class="col-6">
+          {{ form.country|as_crispy_field }}
+        </div>
+       </div>
+          {{ form.zip_code|as_crispy_field }}
+        <div class="invalid-feedback">
+           Zip code required.
+        </div>
+           {{ form.number_phone|as_crispy_field }}
+       <label>
+  <div class="row">
+   <div class="col-6">
+<!-------------Stripe Option --------------->
+      <div class="form-check">
+        <input type="radio" class="form-check-input1" name="payment_option" value="S"  id="id_payment_option_0" required>
+        <label class="form-check-label" for="id_payment_option_0">
+            <img class="cccard" src="{% static 'images/card-mark.png' %}">
+        </label>
+     </div>
+<!--------------------End-------------------->
+</div>
+<div class="col-6">
+<!--------------Paypal Option------------->
+     <div class="form-check">
+        <input type="radio" class="form-check-input1" name="payment_option" value="P"  id="id_payment_option_1" required>
+        <label class="form-check-label" for="id_payment_option_1">
+            <img class="pppay" src="{% static 'images/paypal-mark.jpg' %}">
+        </label>
+     </div>
+<!-------------8------End-------------------->
+</div>
+</div>
+
+      <div class="container1 bg-light">
+        <h5 class="h-4">Buy Now</h5>
+        <button class="cc" type="submit">Continue to Pay</button>
+        <h6 class="bmw">Price</h6>
+     </div>
+
+ </form>
+{% include "footer.html" %}
+{% endblock %}

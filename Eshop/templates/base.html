@@ -1,0 +1,129 @@
+{% load static %}
+<!DOCTYPE html>
+ <html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"> 
+    <meta name="description" content="easy shop your own store for clothes and more products">
+    <meta name="author" content="Abdljbbar Ait jeddi">
+    <meta name="generator" content="Jekyll v3.8.5">
+    {% block head %}
+    {% endblock %}
+    <title>{% block title %}Esay Shop {% endblock %}</title>
+    <link rel="icon" href="{% static 'img/favicon.svg' %}">
+
+    <link rel="stylesheet" href="{% static 'mdb/mdb.min.css' %}">
+    <link rel="stylesheet" href="{% static 'style2.css' %}">
+    <link rel="stylesheet" href="{% static 'res/semantic@2.4.2.css' %}">
+    <link rel="stylesheet" href="{% static 'style1.css' %}">
+    <link href="{% static 'fontawesomefree/css/fontawesome.css' %}" rel="stylesheet" type="text/css">
+    <link href="{% static 'fontawesomefree/css/brands.css' %}" rel="stylesheet" type="text/css">
+    <link href="{% static 'fontawesomefree/css/solid.css' %}" rel="stylesheet" type="text/css">
+<style type="text/css">
+    <!-- custom styling for all icons -->
+    i.fas,
+    i.fab {
+      border: 1px solid red;
+    }
+    <!-- custom styling for specific icons -->
+
+    .fa-twitter {
+      color: rgb(59, 91, 152);
+    }
+
+    .fa-facebook {
+      color: rgb(59, 91, 152);
+    }
+    .fa-instagram {
+      color: pink;
+    }
+    .form-control {
+      outline: none;
+    }
+    .imggg21 {
+         background-image: linear-gradient(to right bottom, #5734ca, #a178f8);
+         background-position: center;
+         background-size: 100% 100%;
+         overflow-x: hidden;
+    }
+    .port{
+        background: linear-gradient(to right bottom,
+        rgba(152,205,237,0.5),
+        rgba(170,201,167,0.3)
+        );
+        border-radius: 1rem;
+        /*backdrop-filter: blur(2rem);
+        z-index: 3;*/
+        box-shadow: 0px 5px 5.5px 0px black;
+    }
+    #cart-icon{
+        width:25px;
+        display: inline-block;
+    }
+    .cart-icon{
+        width:25px;
+        display: inline-block;
+    }
+  </style>
+<script>
+var user = "{{request.user}}"
+var url123 = "{% url 'store:update_item' %}"
+function getToken(name) {
+        var cookieValue = null;
+        if (document.cookie && document.cookie !== '') {
+                var cookies = document.cookie.split(';');
+                for (var i = 0; i < cookies.length; i++) {
+                        var cookie = cookies[i].trim();
+                         // Does this cookie string begin with the name we want?
+                         if (cookie.substring(0, name.length + 1) === (name + '=')) {
+                                cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                                break;
+                         }
+                }
+        }
+        return cookieValue;
+}
+var csrftoken = getToken('csrftoken')
+
+function getCookie(name) {
+// Split cookie string and get all individual name=value pairs in an array
+        var cookieArr = document.cookie.split(";");
+
+        // Loop through the array elements
+        for(var i = 0; i < cookieArr.length; i++) {
+                var cookiePair = cookieArr[i].split("=");
+
+                /* Removing whitespace at the beginning of the cookie name
+                and compare it with the given string */
+                if(name == cookiePair[0].trim()) {
+                        // Decode the cookie value and return
+                        return decodeURIComponent(cookiePair[1]);
+                }
+        }
+
+                // Return null if not found
+                        return null;
+}
+var cart = JSON.parse(getCookie('cart'))
+        if (cart == undefined){
+                cart = {}
+                console.log('Cart Created!', cart)
+                document.cookie ='cart=' + JSON.stringify(cart) + ";domain=;path=/"
+        }
+        console.log('Cart:', cart)
+</script>
+</head>
+
+<body>
+
+{% block content %}
+{% endblock %}
+<br>
+<script src="{% static 'jquery.js' %}"></script>
+<script src="{% static 'javascript.js' %}"></script>
+<script src="{% static 'cart1.js' %}"></script>
+
+<script src="{% static 'mdb/mdb.min.js' %}"></script>
+ </body>
+<html>

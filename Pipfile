@@ -1,0 +1,27 @@
+[[source]]
+url = "https://pypi.org/simple"
+verify_ssl = true
+name = "pypi"
+
+[packages]
+django-countries = "*"
+django = "*"
+django-crispy-forms = "*"
+django-bootstrap-v5 = "*"
+stripe = "*"
+django-bootstrap4 = "*"
+django-flags = "*"
+django-extensions = "*"
+django-sslserver = "*"
+fontawesome-free = "*"
+fontawesomefree = "*"
+django-hosts = "*"
+gunicorn = "*"
+dj-database-url = "*"
+whitenoise = "*"
+django-basic-auth-ip-whitelist = "*"
+
+[dev-packages]
+
+[requires]
+python_version = "3.9"

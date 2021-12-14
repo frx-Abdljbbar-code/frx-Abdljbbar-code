@@ -1,0 +1,101 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}{{ user }} Profile{% endblock %}
+{% block content %}
+<style>
+p {
+  margin-top: -15px;
+  opacity: .7;
+  font-weight: 500;
+}
+.span12 {
+  font-weight: bold;
+  font-size: 40px;
+  background: linear-gradient(to right bottom,
+    rgb(182, 152, 237),
+    rgb(127, 144, 156));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+.btn {
+  display: block;
+}
+</style>
+
+<nav class="navbar navbar-expand-md navbar-secondary bg-light">
+    <a class="navbar-brand text-success two" href="/">E-Shop
+       <img class="navbar-toggler-icon one" src="{% static 'img/favicon1.svg' %}">
+    </a>
+    <button class="bg-light navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+      <img class="navbar-toggler-icon" src="{% static 'images/13.png' %}">
+    </button>
+    <div class="collapse navbar-collapse" id="navbarCollapse">
+      <ul dir="ltr" class="navbar-nav mr-auto">
+      {% if user.is_authenticated %}
+          <li class="mav--item"><strong>
+              <a class="nav-link text-info" href="{% url 'store:menu' %}"> Store</a>
+          </strong></li>
+            <li class="mav--item"><strong>
+             <a class="nav-link text-danger" href="{% url 'logout' %}">Logout</a>
+        </strong></li>
+      {% else %}
+                <li class="mav--item"><strong>
+                    <a class="nav-link text-info" href="{% url 'login' %}">Login</a>
+                </strong></li>
+               <li class="nav-item"><strong>
+                    <a class="nav-link text-info" href="{% url 'home:signup' %}">Sign UP </a>
+                </strong></li>
+      {% endif %}
+               <li class="nav-item"><strong>
+                    <a class="nav-link text-info" href="{% url 'home:contact' %}">Contact me</a>
+               </strong></li>
+                   <li class="nav-item"><strong>
+                    <a class="nav-link text-info" href="{% url 'home:about' %}">About</a>
+                </strong></li>
+            <li class="mav--item">
+                  <a href="#" class="notification">
+                     <strong></strong> <img  id="cart-icon" src="{% static 'images/cart.png' %}">
+                     <span class="badge">4</span>
+                     </a>
+              </li>
+        </ul>
+</nav>
+
+  <div class="card12">
+{% if not profile.image %}
+   <img class="card icone23" src="{% static 'images/avatar.jpg' %}">
+{% else %}
+    <img src="{{ profile.image.url }}" alt="Narouto">
+{% endif %}
+  <br>
+    <div class="content12">
+      <h4><span class="span12">{{ profile.user }}</span></h4>
+    <br>  
+      <p>{{ profile.bio | escape | linebreaks }}</p>
+  <br>
+{% if user == profile.user %}
+  <a href="{% url 'prof:edit_profile' profile.slug %}" class="btn12">Edit Profile</a>
+{% else %}
+
+{% endif %}
+</div>
+</div>
+{% if user.is_authenticated %}
+
+{% else %}
+<div class="container">
+<center>
+<div class="row">
+  <div class="col-md-6">
+  <a class="btn btn-block my-2 my-sm-0 btn-outline-primary" href="{% url 'login' %}">Login</a>
+  </div>
+  <div class="col-md-6">
+  <a class="btn btn-block my-2 my-sm-0 btn-outline-primary" href="{% url 'home:signup' %}">Sign UP</a>
+  </div>
+</div>
+</center>
+</div>
+<br>
+{% endif %}
+{% include "footer.html" %}
+{% endblock %}

@@ -1,0 +1,46 @@
+{% load static %}
+<nav class="navbar navbar-expand-md navbar-secondary bg-light">
+    <a class="navbar-brand text-success two" href="/">E-Shop
+       <img class="navbar-toggler-icon one" src="{% static 'img/favicon1.svg' %}">
+    </a>
+    <button class="bg-light navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+      <img class="navbar-toggler-icon" src="{% static 'images/13.png' %}">
+    </button>
+    <div class="collapse navbar-collapse" id="navbarCollapse">
+        <ul dir="ltr" class="navbar-nav mr-auto">
+   {% if user.is_authenticated %}
+              <li class="mav--item"><strong>
+                 <a class="nav-link text-info" href="{% url 'prof:profile' slug=user.profile.slug %}">profile</a>
+                </strong></li>
+               <li class="mav--item"><strong>
+                 <a class="nav-link text-danger" href="{% url 'logout' %}">logout</a>
+               </strong></li>
+    {% else %}
+                <li class="mav--item"><strong>
+                    <a class="nav-link text-info" href="{% url 'login' %}">login</a>
+                </strong></li>
+                <li class="nav-item"><strong>
+                    <a class="nav-link text-info" href="{% url 'home:signup' %}">Sign UP</a>
+                </strong></li>
+     {% endif %}
+               <li class="nav-item"><strong>
+                    <a class="nav-link text-info" href="{% url 'home:contact' %}">contact me</a>
+               </strong></li>
+                <li class="nav-item"><strong>
+                    <a class="nav-link text-info" href="{% url 'home:about' %}">about</a>
+                </strong></li>
+	{% if user.is_authenticated %}
+            <li class="mav--item"><strong>
+                  <a href="{% url 'store:cart' %}" class="notification text-info">
+                     Cart <img  id="cart-icon" src="{% static 'images/cart.png' %}">
+                     <span class="badge">{{cartItems}}</span>
+                     </a></strong>
+              </li>
+	{% else %}
+     	    <li class="mav--item"><strong>
+                 <a class="nav-link text-info" href="#">Shit</a>
+             </strong></li>
+	{% endif %}
+        </ul>
+</nav>
+ 

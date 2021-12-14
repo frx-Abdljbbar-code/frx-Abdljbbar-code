@@ -1,0 +1,78 @@
+{% extends "base.html" %}
+{% load crispy_forms_tags %}
+{% load bootstrap5 %}
+{% block title %}{{ user }} Edit Profile{% endblock %}
+{% block content %}
+<style>
+input[type=file]{
+        display: flex;
+
+}
+input[type=text],input[type=email]{
+        width: 85%;
+        background: none;
+        display: block;
+        margin: 20px auto;
+        text-align: center;
+        border: 2px solid #3498db;/*#6D71F9*/
+        padding: 10px 5px;
+        outline: none;
+        color: black;
+        border-radius: 24px;
+        transition: 0.25s;
+}
+input[type=text],input[type=email],textarea:focus {
+        width: 93%;
+        border-color: #6D71F9;
+}
+label {
+      padding-top: 10px !important;
+      display: block;
+      color: #2F2F59;
+      font-weight: bold;
+}
+.button {
+  width: 96%;
+  height: 33px;
+  border: none;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: linear-gradient(45deg, #5734ca 20%,#a178f8);
+  color: #FFFFFF;
+  font-weight: 600;
+  font-size: 1rem;
+  margin-top: 20px;
+  box-shadow: 2px 2px 30px rgba(161, 120, 248, 0.1);
+}
+button:active{
+  transform: scale(1.1);
+}
+</style>
+{% include "navbar.html" %}
+<div class="container">
+<br>
+   <h4 class="bg-light text-center text-primary">𝙴𝚍𝚒𝚝 𝚈𝚘𝚞𝚛 𝙿𝚛𝚘𝚏𝚒𝚕𝚎 𝚒𝚗𝚏𝚘𝚛𝚖𝚊𝚝𝚒𝚘𝚗𝚜</h4>
+    <form method="post" enctype="multipart/form-data">
+
+    {% csrf_token %}
+     {{ profile_form|crispy }}
+
+    {{ user_form.username|as_crispy_field }}
+        <div class="row">
+      <div class="col-6">
+          {{ user_form.first_name|as_crispy_field }}
+       </div>
+        <div class="col-6">
+          {{ user_form.last_name|as_crispy_field }}
+        </div>
+        </div>
+          {{ user_form.email|as_crispy_field }}
+      <br>
+
+<button class="btn button btn-block btn-success" type="submit">Save</button>
+</form>
+</div>
+<br>
+{% include "footer.html" %}
+{% endblock %}

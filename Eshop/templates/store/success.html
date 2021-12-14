@@ -1,0 +1,54 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}Payment Successful{% endblock %}
+{% block content %}
+<style>
+h3, h5{
+            font-family: 'Fjalla One', sans-serif;
+            font-weight: 100;
+}
+
+h3{
+                        font-size: 36px;
+}
+h5{
+                        font-family: 'Inter', sans-serif;
+}
+hr{
+                        color:#fff;
+                        background-color: #fff;
+                        border-top:1px solid #fff;
+                        margin-top:20px;
+                        margin-bottom: 20px;
+}
+#profile-pic{
+     width:100px;
+     display:block;
+     margin: 0 auto;
+     border-radius: 50%;
+     float:left;
+}
+#succes-icon{
+     width: 100px;
+}
+</style>
+  <h1 class="text-center text-success">Payment Successful.</h1>
+
+<div class="container">
+<div class="card mb-8 shadow-sm">
+    <div class="card-body">
+          <center>
+                <img id="succes-icon" src="{% static 'images/check.png' %}" loading="lazy">
+                <h4 class="text-center">Your Request Has Been Processed Successfully</h4>
+                <p class="text-center">Thank You For Your Payment ${{ price }}</p>
+                <hr>
+
+                <a class="btn btn-outline-success" href="{% url 'store:menu' %}">&#x2190;Back to Store</a>
+            </center>
+     </div>  
+  </div>
+</div>
+<br>
+<br>
+{% include "footer.html" %}
+{% endblock %}

@@ -1,0 +1,123 @@
+from django.db import models
+from django.contrib.auth.models import User
+from django.utils.text import slugify
+from django.utils import timezone
+import datetime
+from django.db.models.signals import post_save
+from django.conf import settings
+from django_countries.fields import CountryField
+from django.shortcuts import reverse
+from phonenumber_field.modelfields import PhoneNumberField
+
+PAYMENT_CHOICES = (
+    ('S', 'Stripe'),
+    ('P', 'Paypal')
+)
+CATEGORY = (
+    ('SPORT', 'Sport Wear'),
+    ('MEN', 'Men'),
+    ('WOMEN', 'Women')
+)
+DELIVERY_CHOICES = (
+    ('S', 'Standard'),
+    ('P', 'Premium')
+)
+'''------Product-------'''
+class Product(models.Model):
+    name = models.CharField(max_length=50)
+    category = models.CharField(choices=CATEGORY, max_length=8)
+    description = models.TextField(default=' ')
+    image = models.FileField(null=True, blank=True, upload_to='product/',max_length=500)
+    price = models.FloatField()
+    old_price = models.FloatField()
+    item = models.PositiveIntegerField(default=1)
+    def __str__(self):
+        return self.name
+'''---------Category---------- '''
+class Categorys(models.Model):
+    name = models.CharField(max_length=80)
+    type = models.CharField(choices=CATEGORY,max_length=80)
+    product = models.ForeignKey(Product, default=None,on_delete=models.CASCADE)
+    def __str__(self):
+        return self.name
+'''-------Product images-------'''
+class ProductImage(models.Model):
+    product = models.ForeignKey(Product, default=None, on_delete=models.CASCADE)
+    images = models.FileField(upload_to = 'product/', max_length=500)
+    def __str__(self):
+        return self.product.name
+
+'''---------Order----------'''
+class Order(models.Model):
+    customer = models.ForeignKey(User, on_delete=models.CASCADE)
+    date_ordered = models.DateTimeField(auto_now_add=True)
+    complete = models.BooleanField(default=False)
+    def __str__(self):
+        if self.complete == True:
+            return '%s Completed ----->' %(self.customer)
+        else:
+            return '%s Not Completed!! ------->' %(self.customer)
+    @property
+    def get_cart_total(self):
+        orderitems = self.orderitem_set.all()
+        total = sum([item.get_total for item in orderitems])
+        return total
+
+    @property
+    def get_cart_items(self):
+        orderitems = self.orderitem_set.all()
+        total = sum([item.quantity for item in orderitems])
+        return total
+
+
+'''---------Whish List -------------'''
+class WishItem(models.Model):
+    customer = models.ForeignKey(User, on_delete=models.CASCADE)
+    product = models.ForeignKey(Product, on_delete=models.SET_NULL, null=True)
+    date_added = models.DateTimeField(auto_now_add=True)
+    def __str__(self):
+        return '%s' %(self.customer)
+    @property
+    def get_total(self):
+        wishitems = self.orderitem_set.all()
+        total = sum([item.quantity for item in wishitems])
+        return total
+
+'''---------OrderItem---------'''
+class OrderItem(models.Model):
+    product = models.ForeignKey(Product, on_delete=models.SET_NULL, null=True)
+    order = models.ForeignKey(Order, on_delete=models.SET_NULL, null=True)
+    quantity = models.PositiveIntegerField(default=0, null=True, blank=True)
+    date_added = models.DateTimeField(auto_now_add=True)
+
+    @property
+    def get_total(self):
+        total = self.product.price * self.quantity
+        return total
+'''----------Shipping Address----------'''
+class ShippingAddress(models.Model):
+    user = models.OneToOneField(User, on_delete=models.CASCADE, related_name="questions")
+    delivery_option = models.CharField(choices=DELIVERY_CHOICES, max_length=150)
+    add1 = models.CharField(verbose_name="Addresse1", max_length=250)
+    add2 = models.CharField(verbose_name="Addresse2", max_length=250)
+    city = models.CharField(verbose_name="City", max_length=30)
+    country = CountryField(multiple=False)
+    number_phone = PhoneNumberField() # blank=True, null=False)
+    zip_code = models.IntegerField(blank=False, null=True, verbose_name="Zip code")
+    payment_option = models.CharField(choices=PAYMENT_CHOICES, max_length=1)
+    slug = models.SlugField(null=True, blank=True)
+    def __str__(self):
+        return '%s' %(self.user)
+    def save(self, *args, **kwargs):
+        if not self.slug:
+            self.slug = slugify(self.user.username)
+        super(ShippingAddress, self).save(*args, **kwargs)
+
+#    def __str__(self):
+#        return '%s' %(self.user)
+
+def create_profile(sender, **kwargs):
+        if kwargs['created']:
+            customer_adress = ShippingAddress.objects.create(user=kwargs['instance'])
+
+post_save.connect(create_profile, sender=User)
