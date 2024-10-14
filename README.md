@@ -1,6 +1,6 @@
 # Frx-Abdljbbar-code 👨‍💻
 
-**Advanced Web Developer | Full Stack Developer | Software Engineer**
+**Full Stack Developer | Software Engineer**
 
 ![Profile views](https://komarev.com/ghpvc/?username=FRX-aBDLJBBAR-CODE&label=PROFILE+VIEWS&color=brightgreen) ![GitHub followers](https://img.shields.io/github/followers/FRX-aBDLJBBAR-CODE?label=Follow%20Me&style=social)
 
